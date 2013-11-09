@@ -3,6 +3,7 @@
  */
 package com.sivasrinivas.item;
 
+import com.sivasrinivas.itemfact.ItemFactory;
 import com.sivasrinivas.tax.TaxType;
 
 /**
@@ -15,6 +16,20 @@ public abstract class Item {
 	protected int quantity;
 	protected TaxType taxType;
 	
+	
+	public Item(){
+		this.name="";
+		this.price=0.0;
+		this.quantity=0;
+		this.taxType=new TaxType();
+	}
+	
+	public Item(String name, double price, int quantity, boolean isExempted, boolean isImported){
+		this.name=name;
+		this.price=price;
+		this.quantity=quantity;
+		this.taxType = new TaxType(isExempted, isImported);
+	}
 	
 	public String getName() {
 		return name;
@@ -38,5 +53,7 @@ public abstract class Item {
 	public abstract double getTax();
 	
 	public abstract double getTaxedPrice();
+	
+	public abstract ItemFactory getItemFactory();
 	
 }
