@@ -13,6 +13,7 @@ import com.sivasrinivas.tax.TaxType;
 public abstract class Item {
 	protected String name;
 	protected double price;
+	protected double taxedPrice;
 	protected int quantity;
 	protected TaxType taxType;
 	
@@ -51,16 +52,28 @@ public abstract class Item {
 		this.quantity = quantity;
 	}
 	
-	public abstract double getTax();
+	public double getTaxedPrice(){
+		return taxedPrice;
+	}
 	
-	public abstract double getTaxedPrice();
+	public void setTaxedPrice(double taxedPrice){
+		this.taxedPrice = taxedPrice;
+	}
 	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append(quantity+" ");
 		sb.append(name+ " : ");
-		sb.append(MathUtil.truncate(quantity*price));
+		sb.append(taxedPrice);
 		
 		return sb.toString();
+	}
+
+	public TaxType getTaxType() {
+		return taxType;
+	}
+
+	public void setTaxType(TaxType taxType) {
+		this.taxType = taxType;
 	}
 }

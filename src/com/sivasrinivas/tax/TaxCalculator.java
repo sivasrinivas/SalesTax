@@ -3,8 +3,8 @@
  */
 package com.sivasrinivas.tax;
 
-import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.sivasrinivas.item.Item;
 
@@ -14,6 +14,6 @@ import com.sivasrinivas.item.Item;
  */
 public interface TaxCalculator {
 	double getTax(Item item);
-	double calculateTax(Collection<Item> list);
+	double calculateTax(List<Item> list);
 	
 }

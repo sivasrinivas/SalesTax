@@ -35,21 +35,20 @@ public class Biller {
 		Receipt receipt = new Receipt();
 		List<Item> items = cart.getCartItems();
 		receipt.setItemList(items);
-		receipt.setTotalAmount(getTotalAmount(items));
-		receipt.setTotalTax(getTotalTax(items));
+		
+		double totalTax = 0.0;
+		double totalAmount = 0.0;
+		for(Item item : items){
+			double tax = taxCalculator.getTax(item);
+			double taxedPrice = item.getPrice()+tax;
+			totalTax+=tax;
+			totalAmount+=taxedPrice;
+			item.setTaxedPrice(tax);
+		}
+		
+		receipt.setTotalAmount(totalAmount);
+		receipt.setTotalTax(totalTax);
 		return receipt;
 	}
 	
-	private double getTotalTax(List<Item> items){
-		double tax = taxCalculator.calculateTax(items);
-		return tax;
-	}
-	
-	private double getTotalAmount(List<Item> items){
-		double total = 0.0;
-		for(Item item : items){
-			total+=MathUtil.truncate(item.getQuantity()*item.getPrice());
-		}
-		return total;
-	}
 }

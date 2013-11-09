@@ -8,6 +8,7 @@ package com.sivasrinivas.tax;
  *
  */
 public enum TaxValues {
+	
 	SALESTAX(10),
 	DUTYTAX(5);
 	

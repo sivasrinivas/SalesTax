@@ -1,4 +1,4 @@
-package com.sivasrinivas.shop;
+package com.sivasrinivas.billing;
 
 import java.util.ArrayList;
 import java.util.List;
