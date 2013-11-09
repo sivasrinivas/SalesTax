@@ -1,23 +1,15 @@
-/**
- * 
- */
 package com.sivasrinivas.item;
 
-import com.sivasrinivas.itemfact.BookItemFactory;
 import com.sivasrinivas.itemfact.ItemFactory;
 
-/**
- * @author Siva
- *
- */
-public class BookItem extends Item{
-	
-	public BookItem(){
+public class FoodItem extends Item{
+
+	public FoodItem(){
 		super();
 	}
 	
-	public BookItem(String name, double price, int quantity, boolean isImported){
-		super(name, price, quantity, true, isImported);
+	public FoodItem(String name, double price, int quantity, boolean isImported) {
+		super(name, price, quantity, true, isImported); 
 	}
 
 	@Override

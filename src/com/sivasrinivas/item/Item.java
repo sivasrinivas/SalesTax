@@ -3,7 +3,7 @@
  */
 package com.sivasrinivas.item;
 
-import com.sivasrinivas.itemfact.ItemFactory;
+import com.sivasrinivas.tax.MathUtil;
 import com.sivasrinivas.tax.TaxType;
 
 /**
@@ -37,7 +37,8 @@ public abstract class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getPrice() {
+	
+	public double getPrice(){
 		return price;
 	}
 	public void setPrice(double price) {
@@ -54,6 +55,12 @@ public abstract class Item {
 	
 	public abstract double getTaxedPrice();
 	
-	public abstract ItemFactory getItemFactory();
-	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(quantity+" ");
+		sb.append(name+ " : ");
+		sb.append(MathUtil.truncate(quantity*price));
+		
+		return sb.toString();
+	}
 }
