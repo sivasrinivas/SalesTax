@@ -31,6 +31,7 @@ public class Inventory {
 			addItemToInventory("food", new FoodItem());
 			addItemToInventory("other", new OtherItem());
 			addItemToInventory("medical", new MedicalItem());
+			
       }
       
       /**
@@ -63,7 +64,12 @@ public class Inventory {
           return item;
       }
       
-      public String getKeyWord(String name){
+      /**
+       * An utility function to map item name to a category 
+       * @param name - item name
+       * @return category - item category
+       */
+      private String getKeyWord(String name){
     	  String key = "";
     	  if(name.contains("book")){
     		  key="book";
@@ -71,7 +77,7 @@ public class Inventory {
     		  key="food";
     	  }else if(name.contains("headache")|| name.contains("pills") || name.contains("medical")){
     		  key="medical";
-    	  }else if(name.contains("perfume")||name.contains("music") || name.contains("CD")){
+    	  }else {
     		  key="other";
     	  }
     	  return key;
