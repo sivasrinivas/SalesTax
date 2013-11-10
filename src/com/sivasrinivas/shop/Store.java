@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import com.sivasrinivas.billing.Biller;
+import com.sivasrinivas.billing.Receipt;
 import com.sivasrinivas.item.Item;
 import com.sivasrinivas.item.ItemFactory;
 
@@ -48,30 +49,44 @@ public class Store {
 		inputScanner = new Scanner(System.in);
 		String input;
 		input = inputScanner.nextLine();
-		while(input!=null){
+		while(!input.equalsIgnoreCase("exit")){
 			int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
 			String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
 			double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
 			addItemToBilling(quantity, name, price);
+			System.out.println("Next item: (Enter exit to end input)");
 			input = inputScanner.nextLine();
 		}
-		
 	}
 	
 	private void addItemToBilling(int quantity, String name, double price){
 		if(name.contains("chocolates")){
 			boolean isImported = name.contains("imported");
-			Item book = ItemFactory.creatBookItem(name, price, quantity, isImported);
+			Item food = ItemFactory.createFoodItem(name, price, quantity, isImported);
+			biller.billItem(food);
+		}else if(name.contains("book")){
+			boolean isImported = name.contains("imported");
+			Item book = ItemFactory.createBookItem(name, price, quantity, isImported);
 			biller.billItem(book);
-			System.out.println(book.toString());
+		}else if(name.contains("medical")||name.contains("pills")||name.contains("headache")){
+			boolean isImported = name.contains("imported");
+			Item medic = ItemFactory.createMedicalItem(name, price, quantity, isImported);
+			biller.billItem(medic);
+		}else{
+			boolean isImported = name.contains("imported");
+			Item other = ItemFactory.createOtherItem(name, price, quantity, isImported);
+			biller.billItem(other);
 		}
 	}
+	
+	public void printReceipt(){
+		Receipt receipt = biller.generateReceipt();
+		receipt.printReceipt();
+	}
+	
 	
 	public void readOrderFromFile(){
 		
 	}
-	
-	public void printReceipt(){
-		
-	}
+
 }

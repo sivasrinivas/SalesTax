@@ -20,4 +20,16 @@ public class MathUtil {
 		String strValue = new DecimalFormat("0.00").format(value);
 		return Double.parseDouble(strValue);
 	}
+	
+	public static double add(double value1, double value2){
+		double value = value1+value2;
+		value = truncate(value);
+		return value;
+	}
+	
+	public static double subtract(double value1, double value2){
+		double value = value1 - value2;
+		value = truncate(value);
+		return value;
+	}
 }

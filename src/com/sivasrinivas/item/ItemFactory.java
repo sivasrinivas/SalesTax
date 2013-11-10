@@ -7,7 +7,7 @@ import com.sivasrinivas.item.MedicalItem;
 import com.sivasrinivas.item.OtherItem;
 
 public class ItemFactory {
-	public static BookItem creatBookItem(String name, double price, int quantity, boolean isImported){
+	public static BookItem createBookItem(String name, double price, int quantity, boolean isImported){
 		return new BookItem(name, price, quantity, isImported);
 	}
 	
