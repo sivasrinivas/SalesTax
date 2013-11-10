@@ -28,8 +28,11 @@ public class Main {
 				store.readOrderFromFile(args[1]);
 				store.printReceipt();
 			}
-			else
+			else{
+				System.err.println("Invalid arguments.\n");
 				printHelp();
+			}
+				
 		}else
 			printHelp();
 	}

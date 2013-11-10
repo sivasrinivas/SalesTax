@@ -12,7 +12,6 @@ import java.util.Scanner;
 import com.sivasrinivas.billing.Biller;
 import com.sivasrinivas.billing.Receipt;
 import com.sivasrinivas.item.Item;
-import com.sivasrinivas.item.ItemFactory;
 /**
  * Store class for dealing with shopping store. Store class reads input order, bills it and generates receipt for the order. 
  * @author Siva
@@ -40,13 +39,13 @@ public class Store {
 		System.out.println("Ex: 1 imported box of chocolates at 10.00");
 		
 		reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter item details: ");
 		String input;
 		
 		try {
-			input = reader.readLine();
 			
-			while(input!=null && !input.equalsIgnoreCase("n")){
+			do{
+				System.out.println("Enter item details: ");
+				input = reader.readLine();
 				int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
 				String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
 				double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
@@ -54,7 +53,8 @@ public class Store {
 				addItemToBilling(quantity, name, price, isImported);
 				System.out.println("Do you want to add one more item : (Y/N)");
 				input = reader.readLine();
-			}
+			}while(input!=null && !input.equalsIgnoreCase("n"));
+			
 			reader.close();
 			
 		} catch (IOException e) {

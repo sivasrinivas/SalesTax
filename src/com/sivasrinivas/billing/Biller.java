@@ -73,4 +73,7 @@ public class Biller {
 		cart.clearCart();
 	}
 	
+	public List<Item> getOrder(){
+		return cart.getCartItems();
+	}
 }
