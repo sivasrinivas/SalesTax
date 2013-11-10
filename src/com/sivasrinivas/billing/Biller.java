@@ -48,7 +48,29 @@ public class Biller {
 		
 		receipt.setTotalAmount(totalAmount);
 		receipt.setTotalTax(totalTax);
+		
 		return receipt;
+	}
+	
+	public double getTotalTax(){
+		double totalTax = 0.0;
+		totalTax = taxCalculator.calculateTax(cart.getCartItems());
+		return totalTax;
+	}
+	
+	public double getItemTax(Item item){
+		double tax = 0.0;
+		tax = taxCalculator.getTax(item);
+		return tax;
+	}
+	
+	public void printReceipt(){
+		Receipt r = generateReceipt();
+		System.out.println(r.toString());;
+	}
+	
+	public void clearOrder(){
+		cart.clearCart();
 	}
 	
 }

@@ -14,6 +14,10 @@ import com.sivasrinivas.item.Item;
  */
 public class TaxCalculatorImpl implements TaxCalculator{
 
+	public TaxCalculatorImpl(){
+		//
+	}
+	
 	@Override
 	public double getTax(Item item) {
 		TaxType taxType = item.getTaxType();
