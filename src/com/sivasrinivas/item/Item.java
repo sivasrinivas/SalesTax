@@ -62,8 +62,8 @@ public abstract class Item {
 	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(quantity+" ");
-		sb.append(name+ " : ");
+		sb.append(quantity);
+		sb.append(name+ ": ");
 		sb.append(taxedPrice);
 		
 		return sb.toString();

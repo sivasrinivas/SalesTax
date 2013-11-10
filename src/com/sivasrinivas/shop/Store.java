@@ -19,44 +19,22 @@ public class Store {
 		biller = new Biller();
 	}
 	
-	public void init(){
-		System.out.println("****** Sales Tax Application******");
-		System.out.println("How do you want to read order? \n 1. From console, enter 'C' \n 2. From input file, enter 'F'");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-			try {
-					String line = br.readLine();
-					if(line.equalsIgnoreCase("C")){
-						System.out.println("Sample item input: ");
-						System.out.println("1 imported box of chocolates at 10.00");
-						inputScanner = new Scanner(System.in);
-					}else if(line.equalsIgnoreCase("F")){
-						System.out.println("Enter file path: ");
-						line = br.readLine();
-						inputScanner = new Scanner(new File(line));
-						
-					}else{
-						System.out.println("Wrong input. Exiting!");
-					}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-	}
 	
 	public void readOrderFromConsole(){
-		System.out.println("Enter item details: ");
 		inputScanner = new Scanner(System.in);
+		
+		System.out.println("Enter item details: ");
 		String input;
+		
 		input = inputScanner.nextLine();
-		while(!input.equalsIgnoreCase("exit")){
+		do{
 			int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
 			String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
 			double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
 			addItemToBilling(quantity, name, price);
-			System.out.println("Next item: (Enter exit to end input)");
+			System.out.println("Do you want to add one more item : (Y/N)");
 			input = inputScanner.nextLine();
-		}
+		}while(input.equalsIgnoreCase("y"));
 	}
 	
 	private void addItemToBilling(int quantity, String name, double price){

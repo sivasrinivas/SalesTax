@@ -39,6 +39,7 @@ public class TaxCalculatorImpl implements TaxCalculator{
 		for(Item item : list){
 			totalTax+=getTax(item);
 		}
+		totalTax = MathUtil.truncate(totalTax);
 		return totalTax;
 	}
 

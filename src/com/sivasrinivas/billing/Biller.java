@@ -40,7 +40,7 @@ public class Biller {
 		double totalAmount = 0.0;
 		for(Item item : items){
 			double tax = taxCalculator.getTax(item);
-			double taxedPrice = MathUtil.add(item.getPrice(), tax);
+			double taxedPrice = MathUtil.add(item.getPrice()*item.getQuantity(), tax);
 			totalTax = MathUtil.add(totalTax, tax);
 			totalAmount = MathUtil.add(totalAmount, taxedPrice);
 			item.setTaxedPrice(taxedPrice);
