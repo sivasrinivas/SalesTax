@@ -27,6 +27,9 @@ public class FoodItem extends Item{
 		super(name, price, quantity, true, isImported); 
 	}
 	
+	/**
+	 * returns food item factory
+	 */
 	@Override
 	public FoodItemFactory getItemFactory() {
 		// TODO Auto-generated method stub

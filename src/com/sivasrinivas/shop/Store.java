@@ -34,9 +34,10 @@ public class Store {
 	 * Reads order from console line by line and parse each line to fetch quantity, name and unit price of the item
 	 */
 	public void readOrderFromConsole(){
-		System.out.println("\nItem details should be entered in following format\n");
-		System.out.println("Quantity Item Name at Price \n");
-		System.out.println("Ex: 1 imported box of chocolates at 10.00");
+		System.out.println("Item details should be entered in following format");
+		System.out.println("Imported product: <quantity> imported <name> at <price>");
+		System.out.println("Non-imported product: <quantity> <name> at <price>");
+		System.out.println("Ex: 1 imported box of chocolates at 10.00 \n");
 		
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		String input;
@@ -46,11 +47,7 @@ public class Store {
 			do{
 				System.out.println("Enter item details: ");
 				input = reader.readLine();
-				int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
-				String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
-				double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
-				boolean isImported = name.contains("imported");
-				addItemToBilling(quantity, name, price, isImported);
+				parseAndAddToBilling(input);
 				System.out.println("Do you want to add one more item : (Y/N)");
 				input = reader.readLine();
 			}while(input!=null && !input.equalsIgnoreCase("n"));
@@ -58,8 +55,7 @@ public class Store {
 			reader.close();
 			
 		} catch (IOException e) {
-			System.err.println("Invalid item details are entered. Please try again.");
-			System.out.println("Help command: SalesTax help");
+			System.out.println("An error occured. Unable to read input from console.");
 				try {
 					if(reader!=null)
 					reader.close();
@@ -76,9 +72,6 @@ public class Store {
 	 * @param filePath
 	 */
 	public void readOrderFromFile(String filePath){
-		System.out.println("\nItem details should be entered in following format\n");
-		System.out.println("Quantity Item Name at Price \n");
-		System.out.println("Ex: 1 imported box of chocolates at 10.00");
 
 			try {
 				reader = new BufferedReader(new FileReader(new File(filePath)));
@@ -86,17 +79,15 @@ public class Store {
 				
 				input = reader.readLine();
 				while(input!=null){
-					int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
-					String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
-					double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
-					boolean isImported = name.contains("imported");
-					addItemToBilling(quantity, name, price, isImported);
+					parseAndAddToBilling(input);
 					input = reader.readLine();
 				}
 				reader.close();
-			} catch (IOException e) {
-				System.err.println("Invalid item details from the file. Please try again.");
-				System.out.println("Help command: SalesTax help");
+			}catch(FileNotFoundException fne){
+				System.out.println("Specified file path not found.");
+			}
+			catch (IOException e) {
+				System.out.println("An error occured. Unable to read input from input file.");
 				try {
 					if(reader!=null)
 					reader.close();
@@ -107,6 +98,27 @@ public class Store {
 			}
 			
 	}
+	
+	private void parseAndAddToBilling(String input){
+		try{
+			int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
+			String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));
+			double price = Double.parseDouble(input.substring(input.lastIndexOf(" "), input.length()));
+			boolean isImported = name.contains("imported");
+			addItemToBilling(quantity, name, price, isImported);
+		}catch(NumberFormatException nfe){
+			System.out.println("Wrong input formt : "+input);
+			System.out.println("Quanity should be an integer and Price should be double.");
+		}catch(Exception e){
+			System.out.println("Wrong input formt : "+input);
+			System.out.println("Item details should be entered in following format");
+			System.out.println("Imported product: <quantity> imported <name> at <price>");
+			System.out.println("Non-imported product: <quantity> <name> at <price>");
+			System.out.println("Ex: 1 imported box of chocolates at 10.00 \n");
+		}
+		
+	}
+	
 	/**
 	 * adds each item to biller, which in turn adds to shopping cart
 	 * @param quantity
@@ -123,6 +135,9 @@ public class Store {
 	 * @return receipt
 	 */
 	public Receipt getReceipt(){
+		if(biller.getOrder().size()==0){
+			System.out.println("No items in shopping cart.");
+		}
 		Receipt receipt = biller.generateReceipt();
 		return receipt;
 	}
@@ -130,6 +145,10 @@ public class Store {
 	 * Prints order receipts
 	 */
 	public void printReceipt(){
+		if(biller.getOrder().size()==0){
+			System.out.println("No items in shopping cart.");
+			return;
+		}
 		Receipt receipt = biller.generateReceipt();
 		receipt.printReceipt();
 	}

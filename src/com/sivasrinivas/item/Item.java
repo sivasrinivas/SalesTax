@@ -95,7 +95,10 @@ public abstract class Item {
 	public void setTaxType(TaxType taxType) {
 		this.taxType = taxType;
 	}
-	
+	/**
+	 * An abstract method for getting corresponding item factory 
+	 * @return
+	 */
 	public abstract ItemFactory getItemFactory();
 	
 	/**

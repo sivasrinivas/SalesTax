@@ -12,6 +12,9 @@ import com.sivasrinivas.item.MedicalItem;
  */
 public class MedicalItemFactory extends ItemFactory{
 
+	/**
+	 * Factory method for creating medical item
+	 */
 	@Override
 	public MedicalItem createItem(String name, double price, int quantity,	boolean isImported) {
 		return new MedicalItem(name, price, quantity, isImported);

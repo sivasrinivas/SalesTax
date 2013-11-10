@@ -22,21 +22,28 @@ public class BillerTest {
 	Item otherItem;
 	Item medicalItem;
 	
-	
+	/**
+	 * Tests setup
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		biller = new Biller();
 		otherItem = new OtherItem("Bootle of perfume", 27.99, 1, true);
 		medicalItem = new MedicalItem("Packet of headache pills", 9.75, 2, false);
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#billItem(Item)}.
+	 */
 	@Test
 	public void testBillItem() {
 		biller.billItem(medicalItem);
 		List<Item> itemList = biller.getOrder();
 		Assert.assertTrue(itemList.iterator().next().equals(medicalItem));
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#generateReceipt()}.
+	 */
 	@Test
 	public void testGenerateReceipt() {
 		biller.billItem(medicalItem);
@@ -47,7 +54,9 @@ public class BillerTest {
 		Assert.assertEquals(51.69, r.getTotalAmount(), 0.0009);
 		Assert.assertEquals(4.20, r.getTotalTax(), 0.0009);
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#getTotalTax()}.
+	 */
 	@Test
 	public void testGetTotalTax() {
 		biller.billItem(medicalItem);
@@ -55,12 +64,16 @@ public class BillerTest {
 		
 		Assert.assertEquals(4.20, biller.getTotalTax(), 0.0009);
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#getItemTax(Item)}.
+	 */
 	@Test
 	public void testGetItemTax() {
 		Assert.assertEquals(0.0, biller.getItemTax(medicalItem), 0.0009);
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#clearOrder()}.
+	 */
 	@Test
 	public void testClearOrder() {
 		biller.billItem(medicalItem);
@@ -68,7 +81,9 @@ public class BillerTest {
 		biller.clearOrder();
 		Assert.assertEquals(0, biller.getOrder().size());
 	}
-
+	/**
+	 * Test method for {@link com.sivasrinivas.billing.Biller#getOrder()}.
+	 */
 	@Test
 	public void testGetOrder() {
 		biller.billItem(medicalItem);

@@ -26,7 +26,9 @@ public class MedicalItem extends Item{
 	public MedicalItem(String name, double price, int quantity, boolean isImported){
 		super(name, price, quantity, true, isImported);
 	}
-
+	/**
+	 * returns medical item factory
+	 */
 	@Override
 	public MedicalItemFactory getItemFactory() {
 		return new MedicalItemFactory();

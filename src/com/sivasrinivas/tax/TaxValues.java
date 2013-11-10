@@ -8,7 +8,9 @@ package com.sivasrinivas.tax;
  *
  */
 public enum TaxValues {
-	
+	/**
+	 * Tax values for different type of taxes
+	 */
 	SALESTAX(10),
 	DUTYTAX(5);
 	
@@ -17,7 +19,10 @@ public enum TaxValues {
 	TaxValues(int percentage){
 		this.percentage=percentage;
 	}
-	
+	/**
+	 * 
+	 * @return - tax percentage
+	 */
 	public int getPercentage(){
 		return this.percentage;
 	}

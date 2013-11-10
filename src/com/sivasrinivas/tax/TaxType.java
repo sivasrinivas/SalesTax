@@ -4,19 +4,31 @@
 package com.sivasrinivas.tax;
 
 /**
+ * This is Tax Type class, which is contained by each item object. 
  * @author Siva
  *
  */
 public class TaxType {
-	
+	/**
+	 * check whether tax exemption is applicable for the item
+	 */
 	private boolean isExempted;
+	/**
+	 * check whether imported tax applicable for the item
+	 */
 	private boolean isImported;
-	
+	/**
+	 * default constructor for instantiating tax type object, which set isExempted, isImported to false
+	 */
 	public TaxType(){
 		this.isExempted=false;
 		this.isImported=false;
 	}
-	
+	/**
+	 * Parameterized constructor for instantiating tax type object
+	 * @param isExempted
+	 * @param isImported
+	 */
 	public TaxType(boolean isExempted, boolean isImported){
 		this.isExempted=isExempted;
 		this.isImported=isImported;

@@ -11,6 +11,9 @@ import com.sivasrinivas.item.Item;
  */
 public abstract class ItemFactory {
 
+	/**
+	 * Abstract Factory method for creating item
+	 */
 	public abstract Item createItem(String name, double price, int quantity, boolean isImported);
 
 }

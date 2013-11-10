@@ -25,7 +25,9 @@ public class OtherItem extends Item{
 	public OtherItem(String name, double price, int quantity, boolean isImported){
 		super(name, price, quantity, false, isImported);
 	}
-	
+	/**
+	 * returns other item factory
+	 */
 	@Override
 	public OtherItemFactory getItemFactory() {
 		// TODO Auto-generated method stub
