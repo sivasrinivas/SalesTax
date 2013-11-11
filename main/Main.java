@@ -46,7 +46,7 @@ public class Main {
 		sb.append("****** SalesTax Application Help ******\n\n");
 		sb.append("To run application use one of the following commands:\n");
 		sb.append("1. java -jar SalesTax.jar console\n");
-		sb.append("2. java - jar SalesTax file <file path>\n");
+		sb.append("2. java -jar SalesTax.jar file <file path>\n");
 		sb.append("\nItem details should be entered in following format\n");
 		sb.append("Imported product: <quantity> imported <name> at <price>\n");
 		sb.append("Non-imported product: <quantity> <name> at <price>\n");

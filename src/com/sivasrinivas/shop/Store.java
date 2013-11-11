@@ -99,7 +99,11 @@ public class Store {
 			
 	}
 	
-	private void parseAndAddToBilling(String input){
+	/**
+	 * Reads item from a string add adds it to billing
+	 * @param input
+	 */
+	public void parseAndAddToBilling(String input){
 		try{
 			int quantity = Integer.parseInt(input.substring(0, input.indexOf(' ')));
 			String name = input.substring(input.indexOf(' '), input.lastIndexOf("at"));

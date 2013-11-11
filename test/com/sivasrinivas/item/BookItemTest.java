@@ -43,7 +43,7 @@ public class BookItemTest {
 	public void testBookItemStringDoubleIntBoolean() {
 		Item book = new BookItem("book", 12.49, 2, false);
 		Assert.assertEquals("book", book.getName());
-		Assert.assertEquals(0.85, book.getPrice(), 0.001);
+		Assert.assertEquals(12.49, book.getPrice(), 0.001);
 		Assert.assertEquals(2, book.getQuantity());
 		Assert.assertEquals(false, book.getTaxType().isImported());
 	}
